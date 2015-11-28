@@ -17,7 +17,7 @@
                         <a href="/">Home</a>
                     </li>
 					<li id="billetterie">
-                        <a href="/billetterie.php">Billetterie</a>
+                        <a href="/billetterie/">Billetterie</a>
                     </li>
                     <li id="/setup/">
                         <a href="setup/">Setting Up NFC</a>
