@@ -10,7 +10,7 @@
 	</ul>
 	<h3>Administration</h3>
 	<ul class="toggle">
-		<li class="icn_add_user"><a href="index.php">Panneau d'administration</a></li>
+		<li class="icn_add_user"><a href="admin.php">Panneau d'administration</a></li>
 		<li class="icn_add_user"><a href="gestion-asso.php">Gestion de l'association</a></li>
 	</ul>
 	
