@@ -8,7 +8,7 @@
 	if( !isset($_SESSION['login']) || $_SESSION['login'] == '' ) {
     	
     	$currentAddr = "http://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
-    	if ($currentAddr != $_CONFIG['home'])
+    	if ($currentAddr != $_CONFIG['service']."/")
     		header('Location: '.$_CONFIG['service']);
     }
 ?>
