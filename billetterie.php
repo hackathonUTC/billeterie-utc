@@ -1,11 +1,9 @@
-<?php
-    // Page de voeux : /voeux/index.php
-    header("Content-Type: text/html; charset=UTF-8"); 
-    $root = realpath($_SERVER["DOCUMENT_ROOT"]);
+<?php 
+	// Page d'accueil : /index.php 
+	header("Content-Type: text/html; charset=UTF-8"); 
+	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
     require_once $root.'/config.inc.php';
-    //require_once $root.'/inc/checksession.php';
-    //require_once $root.'/inc/checkaccount.php';
-
+	require_once $root.'/inc/checksession.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +16,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         
         <link href="bootstrap/css/bootstrap.min.css?dev=01" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         
         <style type="text/css">
             body {

@@ -16,6 +16,9 @@
                     <li id="home">
                         <a href="/">Home</a>
                     </li>
+					<li id="billetterie">
+                        <a href="/billetterie.php">Billetterie</a>
+                    </li>
                     <li id="/setup/">
                         <a href="setup/">Setting Up NFC</a>
                     </li>
@@ -43,6 +46,11 @@
     {        
         var btn = document.getElementById("admin"); 
         btn.className= "active";
+    }
+	else if (current_href.indexOf("billetterie") !== -1)
+    {
+        var btn = document.getElementById("billetterie"); 
+        btn.className= "active"; 
     }
     else if (current_href.indexOf("setup") !== -1)
     {

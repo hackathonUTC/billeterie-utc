@@ -3,7 +3,7 @@
 	header("Content-Type: text/html; charset=UTF-8"); 
 	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
     require_once $root.'/config.inc.php';
-    require_once $root.'/inc/checksession.php';
+	require_once $root.'/inc/checksession.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +15,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         
         <link href="bootstrap/css/bootstrap.min.css?dev=01" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         
         <style type="text/css">
             body {
@@ -48,9 +49,27 @@
                         <h4 id="alert-title">Alert title</h4>
                         <p id="alert-content">Alert content</p>        
                     </div>
-                    <p class="lead" id="lead">Veuillez vous connecter !</p>
-                    <p id="content">Pour pouvoir vendre des billets, vous devez vous authentifier... <br> <a href="billetterie.php" class="btn btn-large btn-info pull-right" id="cas-connection"> Me connecter </a></p>
-                    <!--<p id="content">Pour pouvoir vendre des billets, vous devez vous authentifier... <br> <a href="<?php //echo $_CONFIG['cas_url']."?service=". $_CONFIG['service']; ?>" class="btn btn-large btn-info pull-right" id="cas-connection"> Me connecter </a></p>-->
+                    
+                    
+					
+					
+					<?php
+                    	if( !isset($_SESSION['login']) || $_SESSION['login'] == '')
+                    	{
+                    		echo '<p class="lead" id="lead">Veuillez vous connecter !</p>';
+                    		echo '<p id="content">Pour pouvoir acheter des billets, vous devez vous authentifier... <br> ';
+							echo '<a href="./inc/connect.php" class="btn btn-large btn-info pull-right" id="cas-connection"> Me connecter </a></p>';
+						}
+						else
+						{
+							echo '<p class="lead" id="lead">Allez fais ton shopping MotherF***er !</p>';
+                    		echo '<p id="content">You are connected MotherF***er !!!<br> ';
+							echo '<a href="inc/disconnect.php" class="btn btn-large btn-danger pull-right" id="cas-connection"> Me Déconnecter </a></p>';
+						}
+					?>
+					
+					
+					
                     <br><br><br>
                 </div>
             </div>
