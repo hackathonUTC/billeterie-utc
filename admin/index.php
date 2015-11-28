@@ -31,9 +31,9 @@
 				
 				<div class="loginPanel">
 				
-					<form class="form">
-						<input type="text" placeholder="Username" style="height: 30px;"><br>
-						<input type="password" placeholder="Password" style="height: 30px;"><br><br>
+					<form class="form" action="connect.php" method="post">
+						<input type="text" placeholder="Email" style="height: 30px;" name="email"><br>
+						<input type="password" placeholder="Password" style="height: 30px;" name="password"><br><br>
 						<button type="submit" id="login-button">Login</button><br><br><br>
 						<a href="subscribe.php"><i>Tu n'as pas de compte associatif orchidoclaste ? Inscris toi maintenant !</i></a>
 					</form>
