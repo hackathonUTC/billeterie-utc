@@ -9,7 +9,7 @@
 	$password = isset($_POST['password']) ? $_POST['password'] : '';
 	
 	if ($email == "" or $password == "")
-		header('Location: '.$_CONFIG['home']);
+		header('Location: '.$_CONFIG['home']."admin/");
 	
 	$sth = $connexion->prepare('SELECT count(*) as `rslt`, `name`, `idAsso`   FROM `compte_assos` WHERE `email` = :email and `password` = SHA1(:password)');
 	
@@ -26,5 +26,7 @@
 		$_SESSION['email'] = $email;
 		header('Location: '.$_CONFIG['home']."admin/admin.php");
 	}
+	else
+		header('Location: '.$_CONFIG['home']."admin/");
 
 ?>
