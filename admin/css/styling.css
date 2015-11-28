@@ -126,6 +126,7 @@ form input {
 }
 form input:hover {
   background-color: rgba(255, 255, 255, 0.4);
+  color: white;
 }
 form input:focus {
   background-color: white;
