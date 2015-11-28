@@ -40,7 +40,7 @@
     <body>
         
         <?php
-            include("/home/guff/www/billetterie/parts/header.php");
+            include("../parts/header.php");
         ?>
         
         <div class="container">
@@ -89,7 +89,7 @@
             
                      
             <?php
-                include("/home/guff/www/billetterie/parts/footer.php");
+                include("../parts/footer.php");
             ?>
     
         

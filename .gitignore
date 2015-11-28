@@ -1,3 +1,4 @@
 config.inc.php
 misc/*
 badgingServer/daemon.py
+contact/mail_conf.inc.php
