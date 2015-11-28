@@ -1,10 +1,13 @@
-<?php 
-	// Page d'accueil : /index.php 
-	header("Content-Type: text/html; charset=UTF-8"); 
-	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+<?php
+    // Page de voeux : /voeux/index.php
+    header("Content-Type: text/html; charset=UTF-8"); 
+    $root = realpath($_SERVER["DOCUMENT_ROOT"]);
     require_once $root.'/config.inc.php';
-    require_once $root.'/inc/checksession.php';
+    //require_once $root.'/inc/checksession.php';
+    //require_once $root.'/inc/checkaccount.php';
+
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -49,8 +52,7 @@
                         <p id="alert-content">Alert content</p>        
                     </div>
                     <p class="lead" id="lead">Veuillez vous connecter !</p>
-                    <p id="content">Pour pouvoir vendre des billets, vous devez vous authentifier... <br> <a href="billetterie.php" class="btn btn-large btn-info pull-right" id="cas-connection"> Me connecter </a></p>
-                    <!--<p id="content">Pour pouvoir vendre des billets, vous devez vous authentifier... <br> <a href="<?php //echo $_CONFIG['cas_url']."?service=". $_CONFIG['service']; ?>" class="btn btn-large btn-info pull-right" id="cas-connection"> Me connecter </a></p>-->
+                    <p id="content">Pour pouvoir vendre des billets, vous devez vous authentifier... <br> <a href="<?php echo $_CONFIG['cas_url']."?service=". $_CONFIG['service']; ?>" class="btn btn-large btn-info pull-right" id="cas-connection"> Me connecter </a></p>
                     <br><br><br>
                 </div>
             </div>
