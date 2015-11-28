@@ -45,89 +45,31 @@
                 
 			<div class="page-header">
 				<a href="#" id="logout" class="btn btn-danger pull-right" style="display: none;"> Logout </a>
-				<h1><center>Estu Noël</center></h1>
+				<h1><center>Liste des événements</center></h1>
 				
 				
 			</div>
 		
 			<div class="row">
-				<div class="span5">
-					<img src="image/affiche.jpg" alt="affiche-evenement">
-				</div>
-				<div class="span7">
-					<table class="table">
-						<thead>
-						  <tr>
-							<th>Type de place</th>
-							<th>Prix de la place</th>
-							<th>Nombre de place</th>
-							<th>                </th>
-						  </tr>
-						</thead>
-						<tbody>
-						  <tr class="success">
-							<td>Places cotisant BDE</td>
-							<td>2000 &#8364</td>
-							 <td>
-								<div class="form-group">
-								  <select class="form-control" id="sel1">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-									<option>8</option>
-								</select>
-								</div>
-							</td>
-							<td><button type="button" class="btn btn-success">Acheter</button></td>
-						  </tr>
-						  <tr class="warning"></td>
-							<td>Places non cotisant BDE</td>
-							<td>3000 &#8364</td>
-							<td>
-								<div class="form-group">
-								  <select class="form-control" id="sel1">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-									<option>8</option>
-								</select>
-								</div>
-							</td>
-							<td><button type="button" class="btn btn-success">Acheter</button></td>
-						  </tr>
-						  <tr class="info">
-							<td>Places extérieure</td>
-							<td>4000 &#8364</td>
-							<td>
-								<div class="form-group">
-								  <select class="form-control" id="sel1">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-									<option>8</option>
-								</select>
-								</div>
-							</td>
-							<td><button type="button" class="btn btn-success">Acheter</button></td>
-						  </tr>
-						</tbody>
-					  </table>
-					<br>
-					<h3><center>Nombre de place restantes : 2</center></h3>
-					<br>
-					contact : estunoel@utc.fr
+			<table class="table">
+				<tbody>
+				  <tr class="success">
+					<td><div class="span3"><img src="image/affiche.jpg" alt="affiche-evenement style="width=200px;height=200px"></div></td>
+					<td><div class="span6"><br><h3><center>Estu Noel <br> <br> nombre de place restantes : 2 </center></h3></div></td>
+					<td><div class="span3"><br><br><center><br><br><a href="http://localhost/billetterie.php" class="btn btn-primary" role="button">Acheter des places</a></center></div></td>
+				  </tr>
+				  <tr class="warning">
+					<td><div class="span3"><img src="image/affiche2.jpg" alt="affiche-evenement style="width=200px;height=200px"></div></td>
+					<td><div class="span6"><br><h3><center>Hackathon<br> <br> nombre de place restantes : 0 </center></h3></div></td>
+					<td><div class="span3"><br><br><center><br><br><a href="http://localhost/billetterie.php" class="btn btn-primary disabled" role="button">Acheter des places</a></td>
+				  </tr>
+				  <tr class="info">
+					<td><div class="span3"><img src="image/affiche3.jpg" alt="affiche-evenement style="width=200px;height=200px"></div></td>
+					<td><div class="span6"><br><h3><center>Ski UTC<br> <br> nombre de place restantes : 73 </center></h3></div></td>
+					<td><div class="span3"><br><br><center><br><br><a href="http://localhost/billetterie.php" class="btn btn-primary" role="button">Acheter des places</a></td>
+				  </tr>
+				</tbody>
+			  </table>
 				</div>
 			</div>
           
