@@ -1,5 +1,52 @@
 <?php
-	header("Content-Type: text/html; charset=UTF-8"); 
+
+	// Page d'accueil : /index.php
+	header("Content-Type: text/html; charset=UTF-8");
+	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+	require_once $root.'/config.inc.php';
+
+	function generateRandomString($length = 10) {
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+		return $randomString;
+	}
+
+	$date = isset($_POST['date']) ? $_POST['date'] : '';
+	$location = isset($_POST['location']) ? $_POST['location'] : '';
+	$maxTicket = isset($_POST['maxTicket']) ? $_POST['maxTicket'] : '';
+
+	echo $date."<br>";
+	echo $location."<br>";
+	echo $maxTicket."<br>";
+	$target_file = $_CONFIG['uploadPath'].generateRandomString(20);
+
+	$filename = $_FILES['flyer']['name'];
+	$ext = pathinfo($filename, PATHINFO_EXTENSION);
+	echo $target_file;
+
+	$target_file = $target_file.$ext;
+/*
+	$uploadOk = 1;
+	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+	// Check if image file is a actual image or fake image
+	if(isset($_POST["submit"])) {
+	    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+	    if($check !== false) {
+	        echo "File is an image - " . $check["mime"] . ".";
+	        $uploadOk = 1;
+	    } else {
+	        echo "File is not an image.";
+	        $uploadOk = 0;
+	    }
+	}
+*/
+
+
 ?>
 
 <!doctype html>
@@ -8,7 +55,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Dashboard I Admin Panel</title>
-	
+
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<!--[if lt IE 9]>
@@ -20,10 +67,10 @@
 	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function() 
-    	{ 
-      	  $(".tablesorter").tablesorter(); 
-   	 } 
+	$(document).ready(function()
+    	{
+      	  $(".tablesorter").tablesorter();
+   	 }
 	);
 	$(document).ready(function() {
 
@@ -60,7 +107,7 @@
 	<?php
             include("../parts/header.php");
     ?>
-	
+
 	<section id="secondary_bar">
 		<div class="user">
 			<p>John Doe (<a href="#">3 Messages</a>)</p>
@@ -70,14 +117,14 @@
 			<article class="breadcrumbs"><a href="index.html">Website Admin</a> <div class="breadcrumb_divider"></div> <a class="current">Dashboard</a></article>
 		</div>
 	</section><!-- end of secondary bar -->
-	
+
 	<?php
 		include("parts/menu.php");
 	?>
-	
+
 	<section id="main" class="column">
 		<h4 class="alert_info"><center>Modification de l'événement</center></h4>
-		
+
 		<div class="clear"></div>
 		<div class="spacer"></div>
 		<article class="module width_3_quarter">
@@ -87,79 +134,79 @@
     		<li><a href="#tab2">Tarifs</a></li>
 		</ul>
 		</header>
-		
-		
+
+
 		<div class="tab_container">
 			<div id="tab1" class="tab_content">
-			<table class="tablesorter" cellspacing="0"> 
-			<tbody> 
-				<tr> 
-    				<td>Nom</td> 
-    				<td><input type="text" class="form-control" id="usr"></td> 
-    				<td><button type="button" class="btn btn-success">Valider</button></td>
-				</tr> 
-				<tr> 
-    				<td>Date</td> 
-    				<td><input type="text" class="form-control" id="usr"></td> 
-    				<td><button type="button" class="btn btn-success">Valider</button></td>
-				</tr>   
-				<tr> 
-    				<td>Lieu</td> 
-    				<td><input type="text" class="form-control" id="usr"></td> 
+			<table class="tablesorter" cellspacing="0">
+			<tbody>
+				<tr>
+    				<td>Nom</td>
+    				<td><input type="text" class="form-control" id="usr"></td>
     				<td><button type="button" class="btn btn-success">Valider</button></td>
 				</tr>
-				<tr> 
-    				<td>Affiche</td> 
+				<tr>
+    				<td>Date</td>
+    				<td><input type="text" class="form-control" id="usr"></td>
+    				<td><button type="button" class="btn btn-success">Valider</button></td>
+				</tr>
+				<tr>
+    				<td>Lieu</td>
+    				<td><input type="text" class="form-control" id="usr"></td>
+    				<td><button type="button" class="btn btn-success">Valider</button></td>
+				</tr>
+				<tr>
+    				<td>Affiche</td>
     				<td><input type="file" /></td>
 					<td><button type="button" class="btn btn-success">Valider</button></td>
 				</tr>
-				<tr> 
-    				<td>Nombre de places maximal</td> 
-    				<td><input type="text" class="form-control" id="usr"></td> 
+				<tr>
+    				<td>Nombre de places maximal</td>
+    				<td><input type="text" class="form-control" id="usr"></td>
     				<td><button type="button" class="btn btn-success">Valider</button></td>
 				</tr>
-				<tr>	
+				<tr>
 					<td></td>
 					<td><button type="button" class="btn btn-danger">Supprimer l'événement</button></td>
 					<td></td>
 				</tr>
-			</tbody> 
+			</tbody>
 			</table>
 			</div><!-- end of #tab1 -->
-			
+
 			<div id="tab2" class="tab_content">
-			<table class="tablesorter" cellspacing="0"> 
-			<tbody> 
-				<tr> 
-    				<td>Package repas+concert</td> 
-    				<td>Cotisant BDE</td> 
+			<table class="tablesorter" cellspacing="0">
+			<tbody>
+				<tr>
+    				<td>Package repas+concert</td>
+    				<td>Cotisant BDE</td>
     				<td>53 &#8364</td>
 					<td>750</td>
-    				<td><a href="modif-tarif.php"><img src="images/icn_edit.png" alt="affiche-evenement"></a>&nbsp;&nbsp;&nbsp;<a href="del-tarif.php"><img src="images/icn_trash.png" alt="affiche-evenement"></td> 
-				</tr> 
-				<tr> 
-    				<td>place de concert</td> 
-    				<td>Non cotisant BDE</td> 
+    				<td><a href="modif-tarif.php"><img src="images/icn_edit.png" alt="affiche-evenement"></a>&nbsp;&nbsp;&nbsp;<a href="del-tarif.php"><img src="images/icn_trash.png" alt="affiche-evenement"></td>
+				</tr>
+				<tr>
+    				<td>place de concert</td>
+    				<td>Non cotisant BDE</td>
     				<td>43 &#8364</td>
 					<td>110</td>
-    				<td><a href="modif-tarif.php"><img src="images/icn_edit.png" alt="affiche-evenement"></a>&nbsp;&nbsp;&nbsp;<a href="del-tarif.php"><img src="images/icn_trash.png" alt="affiche-evenement"></a></td> 
+    				<td><a href="modif-tarif.php"><img src="images/icn_edit.png" alt="affiche-evenement"></a>&nbsp;&nbsp;&nbsp;<a href="del-tarif.php"><img src="images/icn_trash.png" alt="affiche-evenement"></a></td>
 				</tr>
 				<tr>
 					<br>
 					<center><a href="create-tarif.php" class="btn btn-primary" role="button"> Ajouter un tarif </a></center>
 					<br>
 				</tr>
-			</tbody> 
+			</tbody>
 			</table>
 
 			</div><!-- end of #tab2 -->
-			
+
 		</div><!-- end of .tab_container -->
-		
-		
-		
+
+
+
 	</section>
-	
+
 	<?php
             include("../parts/footer.php");
     ?>
