@@ -76,7 +76,7 @@
 	?>
 	
 	<section id="main" class="column">
-		<h4 class="alert_info"><center>Bienvenu sur le panneau d'administration MotherF***er !</center></h4>
+		<h4 class="alert_error"><center>Gestion de l'adminisatration</center></h4>
 		
 		
 		<div class="clear"></div>
