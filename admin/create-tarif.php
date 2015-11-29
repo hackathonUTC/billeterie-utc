@@ -76,9 +76,28 @@
 	?>
 	
 	<section id="main" class="column">
-		<h4 class="alert_error"><center>Gestion de l'adminisatration</center></h4>
-		
-		
+		<h4 class="alert_info"><center>Création de nouveaux tarifs</center></h4>
+		<center>
+		<br>
+		<div class="form-group">
+		  <label for="usr">Désignation :</label>
+		  <input type="text" class="form-control" id="usr">
+		</div>
+		<div class="form-group">
+		  <label for="usr">Type :</label>
+		  <input type="text" class="form-control" id="usr">
+		</div>
+		<div class="form-group">
+		  <label for="usr">Prix :</label>
+		  <input type="text" class="form-control" id="usr">
+		</div>
+		<div class="form-group">
+		  <label for="usr">Nombre de places :</label>
+		  <input type="text" class="form-control" id="usr">
+		</div>
+		<br>
+		<a href="modif-event.php" class="btn btn-primary" role="button"> Créer le tarif </a>
+		</center>
 		<div class="clear"></div>
 		<div class="spacer"></div>
 	</section>

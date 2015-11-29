@@ -76,8 +76,37 @@
 	?>
 	
 	<section id="main" class="column">
-		<h4 class="alert_error"><center>Gestion de l'adminisatration</center></h4>
+		<h4 class="alert_warning"><center>Gestion des événements</center></h4>
 		
+			<h1><center>Liste des événements</center></h1>
+					
+					
+				</div>
+			
+				<div class="row">
+					<table class="table">
+						<tbody>
+						  <tr class="success">
+							<td><div class="span3"><img src="image/affiche.jpg" alt="affiche-evenement style="width=200px;height=200px"></div></td>
+							<td><div class="span6"><br><h3><center>Estu Noel <br> <br> nombre de place restantes : 2 </center></h3></div></td>
+							<td><div class="span3"><br><br><center><a href="modif-event.php" class="btn btn-warning" role="button"> Modifier l'événement </a><a href="billetterie.php" class="btn btn-danger" role="button">Supprimer l'événement</a></center></div></td>
+						  </tr>
+						  <tr class="warning">
+							<td><div class="span3"><img src="image/affiche2.jpg" alt="affiche-evenement style="width=200px;height=200px"></div></td>
+							<td><div class="span6"><br><h3><center>Hackathon<br> <br> nombre de place restantes : 0 </center></h3></div></td>
+							<td><div class="span3"><br><br><center><a href="modif-event.php" class="btn btn-warning" role="button"> Modifier l'événement </a><a href="billetterie.php" class="btn btn-danger" role="button">Supprimer l'événement</a></center></div></td>
+						  </tr>
+						  <tr class="info">
+							<td><div class="span3"><img src="image/affiche3.jpg" alt="affiche-evenement style="width=200px;height=200px"></div></td>
+							<td><div class="span6"><br><h3><center>Ski UTC<br> <br> nombre de place restantes : 73 </center></h3></div></td>
+							<td><div class="span3"><br><br><center><a href="modif-event.php" class="btn btn-warning" role="button"> Modifier l'événement </a><a href="billetterie.php" class="btn btn-danger" role="button">Supprimer l'événement</a></center></div></td>
+						  </tr>
+						</tbody>
+					  </table>
+						</div>
+					</div>
+				  
+				</div>
 		
 		<div class="clear"></div>
 		<div class="spacer"></div>

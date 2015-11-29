@@ -76,11 +76,62 @@
 	?>
 	
 	<section id="main" class="column">
-		<h4 class="alert_error"><center>Gestion de l'adminisatration</center></h4>
-		
+		<h4 class="alert_info"><center>Modification de l'événement</center></h4>
 		
 		<div class="clear"></div>
 		<div class="spacer"></div>
+		
+		<article class="module width_3_half">
+		<header><h3 class="tabs_involved" style="margin-top:-5px;">Tarif Manager</h3>
+		</header>
+
+		<div class="tab_container">
+			<div id="tab1" class="tab_content">
+			<table class="tablesorter" cellspacing="0"> 
+			<thead> 
+				<tr> 
+    				<th>Désignation</th> 
+    				<th>type</th> 
+    				<th>Prix</th> 
+    				<th>Nombre maximal de place<br></th>
+					<th></th>
+				</tr> 
+			</thead> 
+			<tbody> 
+				<tr> 
+    				<td>Package repas+concert</td> 
+    				<td>Cotisant BDE</td> 
+    				<td>53 &#8364</td>
+					<td>750</td>
+    				<td><a href="create-tarif.php"><img src="images/icn_edit.png" alt="affiche-evenement"></a>&nbsp;&nbsp;&nbsp;<input type="image" src="images/icn_trash.png" title="Trash"></td> 
+				</tr> 
+				<tr> 
+    				<td>place de concert</td> 
+    				<td>Non cotisant BDE</td> 
+    				<td>43 &#8364</td>
+					<td>110</td>
+    				<td><a href="create-tarif.php"><img src="images/icn_edit.png" alt="affiche-evenement"></a>&nbsp;&nbsp;&nbsp;<input type="image" src="images/icn_trash.png" title="Trash"></td> 
+				</tr>  
+			</tbody> 
+			</table>
+			</div><!-- end of #tab1 -->
+			
+		</div><!-- end of .tab_container -->
+		
+		
+		
+		</article><!-- end of content manager article -->
+		
+		<div style="margin-top:30px">
+			<span>
+				Ajouter un tarif :
+			</span>
+			<button type="button" class="btn btn-success">
+				Ajouter
+			</button>
+		</div>
+		
+		
 	</section>
 	
 	<?php
