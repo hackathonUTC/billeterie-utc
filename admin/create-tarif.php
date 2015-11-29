@@ -77,29 +77,53 @@
 	
 	<section id="main" class="column">
 		<h4 class="alert_info"><center>Création de nouveaux tarifs</center></h4>
-		<center>
-		<br>
-		<div class="form-group">
-		  <label for="usr">Désignation :</label>
-		  <input type="text" class="form-control" id="usr">
-		</div>
-		<div class="form-group">
-		  <label for="usr">Type :</label>
-		  <input type="text" class="form-control" id="usr">
-		</div>
-		<div class="form-group">
-		  <label for="usr">Prix :</label>
-		  <input type="text" class="form-control" id="usr">
-		</div>
-		<div class="form-group">
-		  <label for="usr">Nombre de places :</label>
-		  <input type="text" class="form-control" id="usr">
-		</div>
-		<br>
-		<a href="modif-event.php" class="btn btn-primary" role="button"> Créer le tarif </a>
-		</center>
 		<div class="clear"></div>
 		<div class="spacer"></div>
+		<article class="module width_3_quarter">
+		<header><h3 class="tabs_involved" style="margin-top:-5px;"></h3>
+		</header>
+
+		<div class="tab_container">
+			<div style="display: block;" id="tab1" class="tab_content">
+			<table class="tablesorter" cellspacing="0"> 
+			<tbody> 
+			<tr> 
+    				<td>Désignation :</td> 
+    				<td><input type="date" class="form-control" id="usr"></td> 
+				</tr> 
+				<tr> 
+    				<td>Type :</td> 
+    				<td><select class="form-control" id="sel1">
+							<option>Choisir un type</option>
+							<option>Cotisant BDE</option>
+							<option>Non cotisant BDE</option>
+							<option>Extérieure</option>
+						  </select>
+					</td> 
+				</tr>   
+				<tr> 
+    				<td>Prix :</td> 
+    				<td><div class="input-append">
+						  <input class="span2" id="appendedInput" type="text">
+						  <span class="add-on">&#8364</span>
+						</div></td> 
+				</tr>
+				<tr> 
+    				<td>Choisissez votre affiche :</td> 
+    				<td><input type="file" /></td> 
+				</tr>
+					<td>Nombre de places :</td> 
+    				<td><input type="date" class="form-control" id="usr"></td> 
+				<tr>
+					<td></td>
+					<td>		<a href="modif-event.php" class="btn btn-primary" role="button"> Créer le tarif </a></td>
+				</tr>
+				
+			</tbody> 
+			</table>
+			</div><!-- end of #tab1 -->
+			
+		</div><!-- end of .tab_container -->
 	</section>
 	
 	<?php
