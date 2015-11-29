@@ -11,7 +11,7 @@
 	if ($email == "" or $password == "")
 		header('Location: '.$_CONFIG['home']."admin/");
 	
-	$sth = $connexion->prepare('SELECT count(*) as `rslt`, `name`, `idAsso`   FROM `compte_assos` WHERE `email` = :email and `password` = SHA1(:password) and `verified` = 1');
+	$sth = $connexion->prepare('SELECT count(*) as `rslt`, `name`, `idAsso`   FROM `assos` WHERE `email` = :email and `password` = SHA1(:password) and `verified` = 1');
 	
 	$sth->bindParam(':email', $email);
 	$sth->bindParam(':password', $password);
