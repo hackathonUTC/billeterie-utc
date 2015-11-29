@@ -80,56 +80,82 @@
 		
 		<div class="clear"></div>
 		<div class="spacer"></div>
-		
-		<article class="module width_3_half">
-		<header><h3 class="tabs_involved" style="margin-top:-5px;">Tarif Manager</h3>
+		<article class="module width_3_quarter">
+		<header><h3 class="tabs_involved" style="margin-top:-5px;"></h3>
+		<ul class="tabs">
+   			<li><a href="#tab1">Événement</a></li>
+    		<li><a href="#tab2">Tarifs</a></li>
+		</ul>
 		</header>
-
+		
+		
 		<div class="tab_container">
 			<div id="tab1" class="tab_content">
 			<table class="tablesorter" cellspacing="0"> 
-			<thead> 
+			<tbody> 
 				<tr> 
-    				<th>Désignation</th> 
-    				<th>type</th> 
-    				<th>Prix</th> 
-    				<th>Nombre maximal de place<br></th>
-					<th></th>
+    				<td>Nom</td> 
+    				<td><input type="text" class="form-control" id="usr"></td> 
+    				<td><button type="button" class="btn btn-success">Valider</button></td>
 				</tr> 
-			</thead> 
+				<tr> 
+    				<td>Date</td> 
+    				<td><input type="text" class="form-control" id="usr"></td> 
+    				<td><button type="button" class="btn btn-success">Valider</button></td>
+				</tr>   
+				<tr> 
+    				<td>Lieu</td> 
+    				<td><input type="text" class="form-control" id="usr"></td> 
+    				<td><button type="button" class="btn btn-success">Valider</button></td>
+				</tr>
+				<tr> 
+    				<td>Affiche</td> 
+    				<td><input type="file" /></td>
+					<td><button type="button" class="btn btn-success">Valider</button></td>
+				</tr>
+				<tr> 
+    				<td>Nombre de places maximal</td> 
+    				<td><input type="text" class="form-control" id="usr"></td> 
+    				<td><button type="button" class="btn btn-success">Valider</button></td>
+				</tr>
+				<tr>	
+					<td></td>
+					<td><button type="button" class="btn btn-danger">Supprimer l'événement</button></td>
+					<td></td>
+				</tr>
+			</tbody> 
+			</table>
+			</div><!-- end of #tab1 -->
+			
+			<div id="tab2" class="tab_content">
+			<table class="tablesorter" cellspacing="0"> 
 			<tbody> 
 				<tr> 
     				<td>Package repas+concert</td> 
     				<td>Cotisant BDE</td> 
     				<td>53 &#8364</td>
 					<td>750</td>
-    				<td><a href="create-tarif.php"><img src="images/icn_edit.png" alt="affiche-evenement"></a>&nbsp;&nbsp;&nbsp;<input type="image" src="images/icn_trash.png" title="Trash"></td> 
+    				<td><a href="modif-tarif.php"><img src="images/icn_edit.png" alt="affiche-evenement"></a>&nbsp;&nbsp;&nbsp;<a href="del-tarif.php"><img src="images/icn_trash.png" alt="affiche-evenement"></td> 
 				</tr> 
 				<tr> 
     				<td>place de concert</td> 
     				<td>Non cotisant BDE</td> 
     				<td>43 &#8364</td>
 					<td>110</td>
-    				<td><a href="create-tarif.php"><img src="images/icn_edit.png" alt="affiche-evenement"></a>&nbsp;&nbsp;&nbsp;<input type="image" src="images/icn_trash.png" title="Trash"></td> 
-				</tr>  
+    				<td><a href="modif-tarif.php"><img src="images/icn_edit.png" alt="affiche-evenement"></a>&nbsp;&nbsp;&nbsp;<a href="del-tarif.php"><img src="images/icn_trash.png" alt="affiche-evenement"></a></td> 
+				</tr>
+				<tr>
+					<br>
+					<center><a href="create-tarif.php" class="btn btn-primary" role="button"> Ajouter un tarif </a></center>
+					<br>
+				</tr>
 			</tbody> 
 			</table>
-			</div><!-- end of #tab1 -->
+
+			</div><!-- end of #tab2 -->
 			
 		</div><!-- end of .tab_container -->
 		
-		
-		
-		</article><!-- end of content manager article -->
-		
-		<div style="margin-top:30px">
-			<span>
-				Ajouter un tarif :
-			</span>
-			<button type="button" class="btn btn-success">
-				Ajouter
-			</button>
-		</div>
 		
 		
 	</section>

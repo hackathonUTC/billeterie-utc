@@ -80,62 +80,35 @@
 		<h4 class="alert_success"><center>création d'un événement</center></h4>
 		<article class="module width_3_quarter">
 		<header><center>
-		<ul class="tabs">
-   			<li class="active"><a href="#tab1">Partie 1</a></li>
-    		<li class=""><a href="#tab2">Partie 2</a></li>
-		</ul></center>
 		</header>
 
 		<div class="tab_container">
 			<div style="display: block;" id="tab1" class="tab_content">
 			<table class="tablesorter" cellspacing="0"> 
 			<tbody> 
-				 <div class="form-group">
-				   <center>
-				   <br>
-				   <label for="usr">Date : </label>
-				   <br>
-				   
-				   <input type="text" class="form-control" id="usr">
-				 </center>
-				 </div>
-
-				<div class="form-group">
-				   <center>
-				   <br>
-				   <label for="usr">Lieux : </label>
-				   <br>
-				   
-				   <input type="text" class="form-control" id="usr">
-				 </center>
-				 </div>
-				 
-				 <div class="form-group">
-				   <center>
-				   <br>
-				   <label for="usr">Nombre max de places : </label>
-				   <br>
-				   
-				   <input type="text" class="form-control" id="usr">
-				 </center>
-				 </div>
+			<tr> 
+    				<td>Date :</td> 
+    				<td><input type="date" class="form-control" id="usr"></td> 
+				</tr> 
+				<tr> 
+    				<td>Lieu :</td> 
+    				<td><input type="text" class="form-control" id="usr"></td> 
+				</tr>   
+				<tr> 
+    				<td>Nombre de place maximum :</td> 
+    				<td><input type="number" class="form-control" id="usr"></td> 
+				</tr>
+				<tr> 
+    				<td>Choisissez votre affiche :</td> 
+    				<td><input type="file" /></td> 
+				</tr>
+					<td></td>
+					<td><a href="modif-event.php" class="btn btn-primary" role="button"> Envoyer </a></td>
+				<tr>
+				
 			</tbody> 
 			</table>
 			</div><!-- end of #tab1 -->
-			
-			<div style="display: none;" id="tab2" class="tab_content">
-				<table class="tablesorter" cellspacing="0"> 
-					<tbody> 
-						<center>
-						<label for="usr">Choisissez votre affiche : <button type="button" class="btn btn-warning">Parcourir...</button></label>
-						<br>
-						<br>
-							<img src="images/affiche.jpg" >
-						</center>
-					</tbody> 
-				</table>
-
-			</div><!-- end of #tab2 -->
 			
 		</div><!-- end of .tab_container -->
 		

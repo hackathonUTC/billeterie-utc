@@ -3,4 +3,5 @@ misc/*
 badgingServer/daemon.py
 contact/mail_conf.inc.php
 admin_old/
+admin/exemple.php
 *.pyc
