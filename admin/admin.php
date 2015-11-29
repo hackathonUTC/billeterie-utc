@@ -1,5 +1,10 @@
 <?php
-	header("Content-Type: text/html; charset=UTF-8"); 
+	// Page d'accueil : /index.php
+	header("Content-Type: text/html; charset=UTF-8");
+	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+	require_once $root.'/config.inc.php';
+	require_once $root.'/inc/checkadmin.php';
+	
 ?>
 
 <!doctype html>
@@ -8,7 +13,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Dashboard I Admin Panel</title>
-	
+
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<!--[if lt IE 9]>
@@ -20,10 +25,10 @@
 	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function() 
-    	{ 
-      	  $(".tablesorter").tablesorter(); 
-   	 } 
+	$(document).ready(function()
+    	{
+      	  $(".tablesorter").tablesorter();
+   	 }
 	);
 	$(document).ready(function() {
 
@@ -60,7 +65,7 @@
 	<?php
             include("../parts/header.php");
     ?>
-	
+
 	<section id="secondary_bar">
 		<div class="user">
 			<p>John Doe (<a href="#">3 Messages</a>)</p>
@@ -70,19 +75,19 @@
 			<article class="breadcrumbs"><a href="index.html">Website Admin</a> <div class="breadcrumb_divider"></div> <a class="current">Dashboard</a></article>
 		</div>
 	</section><!-- end of secondary bar -->
-	
+
 	<?php
 		include("parts/menu.php");
 	?>
-	
+
 	<section id="main" class="column">
 		<h4 class="alert_info"><center>Bienvenu sur le panneau d'administration MotherF***er !</center></h4>
-		
-		
+
+
 		<div class="clear"></div>
 		<div class="spacer"></div>
 	</section>
-	
+
 	<?php
             include("../parts/footer.php");
     ?>
