@@ -54,21 +54,38 @@
 				<div class="row">
 					<table class="table">
 						<tbody>
-						  <tr class="success">
-							<td><div class="span3"><img src="image/affiche.jpg" alt="affiche-evenement style="width=200px;height=200px"></div></td>
-							<td><div class="span6"><br><h3><center>Estu Noel <br> <br> nombre de place restantes : 2 </center></h3></div></td>
-							<td><div class="span3"><br><br><center><br><br><a href="billetterie.php" class="btn btn-primary" role="button">Acheter des places</a></center></div></td>
-						  </tr>
-						  <tr class="warning">
-							<td><div class="span3"><img src="image/affiche2.jpg" alt="affiche-evenement style="width=200px;height=200px"></div></td>
-							<td><div class="span6"><br><h3><center>Hackathon<br> <br> nombre de place restantes : 0 </center></h3></div></td>
-							<td><div class="span3"><br><br><center><br><br><a href="billetterie.php" class="btn btn-primary disabled" role="button">Acheter des places</a></td>
-						  </tr>
-						  <tr class="info">
-							<td><div class="span3"><img src="image/affiche3.jpg" alt="affiche-evenement style="width=200px;height=200px"></div></td>
-							<td><div class="span6"><br><h3><center>Ski UTC<br> <br> nombre de place restantes : 73 </center></h3></div></td>
-							<td><div class="span3"><br><br><center><br><br><a href="billetterie.php" class="btn btn-primary" role="button">Acheter des places</a></td>
-						  </tr>
+						
+						<?php
+						
+							$sth = $connexion->prepare('SELECT * FROM `events` WHERE `eventDate` >= CURDATE() order by `eventDate`');
+                            
+                            $sth->execute();
+							
+							$i = 0;
+                            
+                            while ($row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
+								$id = $row["eventID"];
+								$name = $row["eventName"];
+								$asso = $row["asso"];
+								$date = $row["eventDate"];
+								$eventFlyer = $row["eventFlyer"];
+								$maxTickets = $row["eventTicketMax"];
+								$ticketsLeft = rand ( 0 , $maxTickets );
+								
+								if ($i % 3 == 0)
+									echo '<tr class="success">';
+								else if ($i % 3 == 1)
+									echo '<tr class="warning">';
+								else
+									echo '<tr class="info">';
+								
+								echo'<td><div class="span3"><img src="'.$eventFlyer.'" alt="affiche-evenement style="width=200px;height=200px"></div></td>
+									 <td><div class="span6"><br><h3><center>'.$name.' <br>- '.$date.' -<br> <br> nombre de place restantes : '.$ticketsLeft.' </center></h3></div></td>
+									 <td><div class="span3"><br><br><center><br><br><a href="billetterie.php?eventID='.$id.'" class="btn btn-primary" role="button">Acheter des places</a></center></div></td>
+									 </tr>';
+								$i = $i +1;
+							}
+						?>
 						</tbody>
 					  </table>
 						</div>
