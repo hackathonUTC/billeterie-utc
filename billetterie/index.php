@@ -57,20 +57,21 @@
 
 						<?php
 
-							$sth = $connexion->prepare('SELECT * FROM `events` WHERE `eventDate` >= CURDATE() order by `eventDate`');
+							$sth = $connexion->prepare('SELECT `t1`.`eventID`, `t1`.`asso`, `t1`.`eventName`, `t1`.`eventDate`, `t1`.`eventFlyer`, `t1`.`eventTicketMax`, `t1`.`location`, `t2`.`placeLeft` FROM `events` as `t1`, (SELECT events.eventTicketMax - (SELECT COUNT(*) FROM `tickets`) as `placeLeft`, `eventID` FROM `events`) as `t2` WHERE `eventDate` >= CURDATE() and `t2`.`eventID` = `t1`.`eventID` order by `eventDate`;');
 
-                            $sth->execute();
+              $sth->execute();
 
 							$i = 0;
 
-                            while ($row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
+              while ($row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
 								$id = $row["eventID"];
 								$name = $row["eventName"];
 								$asso = $row["asso"];
 								$date = $row["eventDate"];
+								$location = $row["location"];
 								$eventFlyer = $row["eventFlyer"];
 								$maxTickets = $row["eventTicketMax"];
-								$ticketsLeft = rand ( 0 , $maxTickets );
+								$ticketsLeft = $row["placeLeft"];
 
 								if ($i % 3 == 0)
 									echo '<tr class="success">';
@@ -80,8 +81,8 @@
 									echo '<tr class="info">';
 								$i = $i +1;
 
-								echo'<td><div class="span3"><img src="'.$eventFlyer.'" alt="affiche-evenement style="width=200px;height=200px"></div></td>
-									 <td><div class="span6"><br><h3><center>'.$name.' <br>- '.$date.' -<br> <br> nombre de place restantes : '.$ticketsLeft.' </center></h3></div></td>
+								echo'<td><div class="span3"><img src="../'.$eventFlyer.'" alt="affiche-evenement style="width=200px;height=200px"></div></td>
+									 <td><div class="span6"><br><h3><center>'.$name.' @ '.$location.'<br>- '.$date.' -<br> <br> nombre de place restantes : '.$ticketsLeft.' </center></h3></div></td>
 									 <td><div class="span3"><br><br><center><br><br><a href="billetterie.php?eventID='.$id.'" class="btn btn-primary" role="button">Acheter des places</a></center></div></td>
 									 </tr>';
 
