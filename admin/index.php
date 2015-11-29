@@ -1,3 +1,12 @@
+<?php 
+	// Page d'accueil : /index.php 
+	header("Content-Type: text/html; charset=UTF-8"); 
+	$checkemail = isset($_GET['checkemail']) ? $_GET['checkemail'] : '';
+	
+	if ($checkemail == "1")
+		echo "<script>alert('Check your email to confirm!');</script>";
+?>
+
 <!DOCTYPE html>
 <html >
   <head>
