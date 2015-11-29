@@ -37,10 +37,6 @@ setTimeout(function(){
 }, delay);
 
 
-
-delay = 1500;
-
-
 // Implement a response to the server
 websocket.onmessage = function (event) {
 	if (event.data == "048E0C828D3684"){
