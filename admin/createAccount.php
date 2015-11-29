@@ -33,10 +33,36 @@
 	$sth->bindParam(':name', $email);
 	$sth->bindParam(':email', $email);
 	$sth->bindParam(':password', $password1);
-	$sth->bindParam(':key', generateRandomString(40));
+	$key = generateRandomString(40);
+	$sth->bindParam(':key', $key);
 
-	if($sth->execute())
+	if($sth->execute()){
+		// Préparation du mail contenant le lien d'activation
+		$destinataire = $email."@assos.utc.fr";
+		$destinataire = "marco.flint31@gmail.com";
+		$sujet = "Activer votre compte" ;
+		$entete = "From: billetterie@assos.utc.fr" ;
+		 
+		// Le lien d'activation est composé du login(log) et de la clé(cle)
+		$message = 'Bienvenue sur la Billetterie UTC,
+		 
+		Pour activer votre compte, veuillez cliquer sur le lien ci dessous
+		ou copier/coller dans votre navigateur internet.
+		 
+		'.$_CONFIG['home'].'admin/confirm.php?key='.$key.'
+		 
+		 
+		---------------
+		Ceci est un mail automatique, Merci de ne pas y répondre.';
+		 
+		 
+		mail($destinataire, $sujet, $message, $entete) ; // Envoi du mail
 		header('Location: '.$_CONFIG['home']."admin/index.php?checkemail=1");
+		
+		
+		
+	}
+		
 	/*
 	if ($row["rslt"] == 1){
 		session_start();
