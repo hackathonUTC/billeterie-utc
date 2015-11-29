@@ -5,6 +5,16 @@
 	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
 	require_once $root.'/config.inc.php';
 	require_once $root.'/inc/dbconnect.php';
+	
+	function generateRandomString($length = 10) {
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+		return $randomString;
+	}
 
 	$email = isset($_POST['email']) ? $_POST['email'] : '';
 	$password1 = isset($_POST['pass1']) ? $_POST['pass1'] : '';
@@ -18,11 +28,12 @@
 	else if ($password1 != $password2)
 		header('Location: '.$_CONFIG['home']."admin/subscribe.php?error=2");
 	
-	$sth = $connexion->prepare('INSERT INTO `compte_assos` (`idAsso`, `name`, `email`, `password`, `verified`) VALUES  (NULL, :name, CONCAT(:email, "@assos.utc.fr"), SHA1(:password), 0)');
+	$sth = $connexion->prepare('INSERT INTO `compte_assos` (`idAsso`, `name`, `email`, `password`, `verified`, `verif_key`) VALUES  (NULL, :name, CONCAT(:email, "@assos.utc.fr"), SHA1(:password), 0, :key)');
 	
 	$sth->bindParam(':name', $email);
 	$sth->bindParam(':email', $email);
 	$sth->bindParam(':password', $password1);
+	$sth->bindParam(':key', generateRandomString(40));
 
 	if($sth->execute())
 		header('Location: '.$_CONFIG['home']."admin/index.php?checkemail=1");
