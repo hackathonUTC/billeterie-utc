@@ -5,6 +5,10 @@
     require_once $root.'/config.inc.php';
 	require_once $root.'/inc/checksession.php';
 	require_once $root.'/inc/dbconnect.php';
+	
+	$eventID = isset($_GET['eventID']) ? $_GET['eventID'] : '';
+	if ($eventID == "")
+		header('Location: '.$_CONFIG['home']."billetterie/");
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +57,18 @@
 		
 			<div class="row">
 				<div class="span5">
+				<?php
+					/*
+					$sth = $connexion->prepare('SELECT `eventFlyer` FROM `events` WHERE `eventID` = :eventID');
+	
+					$sth->bindParam(':email', $email);
+					$sth->bindParam(':password', $password);
+
+					$sth->execute(); 
+					$row = $sth->fetch();
+					*/
+				?>
+				
 					<img src="image/affiche.jpg" alt="affiche-evenement">
 				</div>
 				<div class="span7">
@@ -66,69 +82,48 @@
 						  </tr>
 						</thead>
 						<tbody>
-						  <tr class="success">
-							<td>Places cotisant BDE</td>
-							<td>2000 &#8364</td>
-							 <td>
-								<div class="form-group">
-								  <select class="form-control" id="sel1">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-									<option>8</option>
-								</select>
-								</div>
-							</td>
-							<td><button type="button" class="btn btn-success">Acheter</button></td>
-						  </tr>
-						  <tr class="warning"></td>
-							<td>Places non cotisant BDE</td>
-							<td>3000 &#8364</td>
-							<td>
-								<div class="form-group">
-								  <select class="form-control" id="sel1">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-									<option>8</option>
-								</select>
-								</div>
-							</td>
-							<td><button type="button" class="btn btn-success">Acheter</button></td>
-						  </tr>
-						  <tr class="info">
-							<td>Places extérieure</td>
-							<td>4000 &#8364</td>
-							<td>
-								<div class="form-group">
-								  <select class="form-control" id="sel1">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-									<option>8</option>
-								</select>
-								</div>
-							</td>
-							<td><button type="button" class="btn btn-success">Acheter</button></td>
-						  </tr>
+							<?php
+								$sth = $connexion->prepare('SELECT * FROM `tarifs` WHERE `eventID` = :eventID');
+								$sth->bindParam(':eventID', $eventID);
+								
+								$sth->execute();
+								
+								$i = 0;
+								
+								while ($row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
+									$tarifID = $row["tarifID"];
+									$eventID = $row["eventID"];
+									$name = $row["tarifName"];
+									$price = $row["price"];
+									$maxByUser = $row["maxByUser"];
+									
+									if ($i % 3 == 0)
+										echo '<tr class="success">';
+									else if ($i % 3 == 1)
+										echo '<tr class="warning">';
+									else
+										echo '<tr class="info">';
+									$i = $i +1;
+									
+									echo '<td>'.$name.'</td>';
+									echo '<td>'.$price.'&#8364</td>';
+									echo '<td><div class="form-group"><select class="form-control" id="sel1">';
+									
+									for ($j = 1; $j <= $maxByUser; $j++) {
+										echo '<option>'.$j.'</option>';
+									}
+									
+									echo '</select></div></td>';
+									echo '<td><button type="button" class="btn btn-success">Acheter</button></td>';
+									echo '<td>'.$name.'</td>';
+									echo '</tr>';
+								}
+							?>
 						</tbody>
 					  </table>
 					<br>
 					<h3><center>Nombre de place restantes : 2</center></h3>
 					<br>
-					contact : estunoel@utc.fr
 				</div>
 			</div>
           
