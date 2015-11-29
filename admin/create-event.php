@@ -109,7 +109,7 @@
 			    				<td><input type="file" class="form-control" name="flyer" id="flyer"></td>
 							</tr>
 								<td></td>
-								<td><button type="submit" class="btn btn-primary" id="login-button" role="button">Envoyer</button></td>
+								<td><button type="submit" class="btn btn-primary" id="submit" role="button" name="submit">Envoyer</button></td>
 							<tr>
 
 						</tbody>
