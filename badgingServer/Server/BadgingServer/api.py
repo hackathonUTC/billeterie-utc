@@ -31,11 +31,18 @@ import json
 from smartcard.scard import *
 import smartcard.util
 
+from gevent import monkey; monkey.patch_all()
+from ws4py.websocket import EchoWebSocket
+from ws4py.server.geventserver import WSGIServer
+from ws4py.server.wsgiutils import WebSocketWSGIApplication
+
 import reader
 
 __version__ = 1
 
 nfc_reader = None
+server = WSGIServer(('localhost', 8889), WebSocketWSGIApplication(handler_cls=EchoWebSocket))
+
 
 #################################### WebService Route / #####################################
 class API:
@@ -97,4 +104,5 @@ class API:
 		return static_file("index.html", root=os.getcwd()+'\\html')
 		
 	def _execute(self):
+		
 		return json.dumps({"badge_id": nfc_reader.read_badge()})
