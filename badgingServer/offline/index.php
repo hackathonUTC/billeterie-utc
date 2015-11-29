@@ -1,62 +1,64 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/transitional.dtd">
 <html>
 <head>
-<title>websocket client: send/receive test</title>
-<script type="text/javascript" src=".........../web-socket-js/swfobject.js"></script>
-<script type="text/javascript" src=".........../web-socket-js/web_socket.js"></script>
-<script type="text/javascript">
-WEB_SOCKET_SWF_LOCATION = "............/web-socket-js/WebSocketMain.swf";
-function log(msg) {
-    var d = new Date();
-    var hour = d.getHours();
-    var min = d.getMinutes();
-    var sec = d.getSeconds();
-    var msec = d.getMilliseconds();
-    var time = hour + ":" + min + ":" + sec + ":" + msec
-    document.getElementById('foo').innerHTML += time + ": " + msg + "<br />";
-    }
- 
-function ws_init(url) {
-    log("connecting to " + url + "...")
-    ws = new WebSocket(url);
-    ws.onopen = function() {
-        log("connection established.");
-        };
-    ws.onmessage = function(e) {
-        log("message received: '" + e.data + "'");
-        };
-    ws.onclose = function() {
-        log("connection closed.");
-        };
-    }
- 
-function ws_send(msg) {
-    log("send: " + msg);
-    ws.send(msg);
-    }
- 
-function ws_close() {
-    log("closing connection..");
-    ws.close();
-    }
-</script>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <script src="scripts/jquery-1.9.1.min.js"  ></script>
+	<style>
+	.result{
+		height:300px;
+		font-size: 300%;
+	}
+	
+	</style>
 </head>
 <body>
-<form name="input_form">
-<table>
-<tr>
-    <td>host/resource:</td>
-    <td><input type="text" name="host" size="50" value="ws://127.0.0.1:8889/badge"></td>
-    <td><input type="button" value="connect" onclick="ws_init(document.input_form.host.value)"></td>
-    <td><input type="button" value="disconnect" onclick="ws_close()"></td>
-</tr>
-<tr>
-    <td>msg:</td>
-    <td><input type="text" name="msg" size="50"></td>
-    <td><input type="button" value="send" onclick="ws_send(document.input_form.msg.value)"></td>
-</tr>
-</table>
-</form>
-<div id="foo"> </div>
+<div class="container">
+	<center><h1>Offline Server</h1></center>
+<div class="row" style="margin-top:100px;" id="row" >
+		<div class="span5 result" style="background-color:grey;" id="square"></div>
+		<div class="span7 result"><center style="margin-top:130px" id="comment" >Attend un badge</center></div>
+	</div>
+</div>
+
+<script src="bootstrap/js/bootstrap-modal.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+// Connect to the server
+var websocket = new WebSocket('ws://127.0.0.1:8889/badge');
+
+delay = 1500;
+
+setTimeout(function(){
+	if (websocket.readyState != 1){
+		console.log(websocket.readyState)
+		$('#row').html('<center><h2>Serveur Python Non Connecté</h2></center>');
+	}
+}, delay);
+
+
+
+delay = 1500;
+
+
+// Implement a response to the server
+websocket.onmessage = function (event) {
+	if (event.data == "048E0C828D3684"){
+		$('#square').css('background-color', 'green');
+		$('#comment').html('Accès Autorisé');
+	}
+	else{
+		$('#square').css('background-color', 'red');
+		$('#comment').html('Accès Refusé');
+	}
+	
+	setTimeout(function(){
+		$('#square').css('background-color', 'grey');
+		$('#comment').html('Attend un badge');
+	}, delay); 
+};
+</script>
+
 </body>
+
 </html>
