@@ -4,38 +4,26 @@
 	header("Content-Type: text/html; charset=UTF-8");
 	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
 	require_once $root.'/config.inc.php';
-
-	function generateRandomString($length = 10) {
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$charactersLength = strlen($characters);
-		$randomString = '';
-		for ($i = 0; $i < $length; $i++) {
-			$randomString .= $characters[rand(0, $charactersLength - 1)];
-		}
-		return $randomString;
-	}
+	require_once $root.'/inc/dbconnect.php';
+	require_once $root.'/inc/checkadmin.php';
+	require_once $root.'/inc/functions.php';
 
 	$date = isset($_POST['date']) ? $_POST['date'] : '';
+	$name = isset($_POST['name']) ? $_POST['name'] : '';
 	$location = isset($_POST['location']) ? $_POST['location'] : '';
 	$maxTicket = isset($_POST['maxTicket']) ? $_POST['maxTicket'] : '';
 
-	echo $date."<br>";
-	echo $location."<br>";
-	echo $maxTicket."<br>";
 	$target_file = $_CONFIG['uploadPath'].generateRandomString(20);
 
 	$filename = $_FILES['flyer']['name'];
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-	echo $target_file;
 
-	$target_file = $target_file.$ext;
-/*
+	$target_file = $target_file.".".strtolower($ext);
+
 	$uploadOk = 1;
-	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 	// Check if image file is a actual image or fake image
 	if(isset($_POST["submit"])) {
-	    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+	    $check = getimagesize($_FILES["flyer"]["tmp_name"]);
 	    if($check !== false) {
 	        echo "File is an image - " . $check["mime"] . ".";
 	        $uploadOk = 1;
@@ -43,8 +31,35 @@
 	        echo "File is not an image.";
 	        $uploadOk = 0;
 	    }
+			if ($_FILES["flyer"]["size"] > 5000000) // Larger than 5Mb
+			{
+			    echo "Sorry, your file is too large.";
+			    $uploadOk = 0;
+			}
+			while (file_exists($target_file)) {
+			    $target_file = $_CONFIG['uploadPath'].generateRandomString(20);
+					$target_file = $target_file.".".strtolower($ext);
+			}
+			if($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != "gif" ) {
+					$uploadOk = 0;
+			}
 	}
-*/
+	if ($uploadOk){
+			if(move_uploaded_file($_FILES["flyer"]["tmp_name"], $target_file)){
+					$sth = $connexion->prepare('INSERT INTO `events` (`eventID`, `asso`, `eventName`, `eventDate`, `eventFlyer`, `eventTicketMax`) VALUES (NULL, :asso, :name, :eventdate, :flyerpath, :maxTicket)');
+
+					$sth->bindParam(':asso', $asso);
+					$sth->bindParam(':name', $name);
+					$sth->bindParam(':eventdate', $date);
+					$dbFilePath = substr($target_file, 12);
+					$sth->bindParam(':flyerpath', $dbFilePath);
+					$sth->bindParam(':maxTicket', $maxTicket);
+
+					$sth->execute();
+			}
+	}
+
+
 
 
 ?>
