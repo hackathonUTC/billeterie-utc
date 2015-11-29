@@ -1,5 +1,5 @@
 ﻿<?php
-	header("Content-Type: text/html; charset=UTF-8"); 
+	header("Content-Type: text/html; charset=UTF-8");
 ?>
 
 <!doctype html>
@@ -8,7 +8,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Dashboard I Admin Panel</title>
-	
+
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<!--[if lt IE 9]>
@@ -20,10 +20,10 @@
 	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function() 
-    	{ 
-      	  $(".tablesorter").tablesorter(); 
-   	 } 
+	$(document).ready(function()
+    	{
+      	  $(".tablesorter").tablesorter();
+   	 }
 	);
 	$(document).ready(function() {
 
@@ -60,7 +60,7 @@
 	<?php
             include("../parts/header.php");
     ?>
-	
+
 	<section id="secondary_bar">
 		<div class="user">
 			<p>John Doe (<a href="#">3 Messages</a>)</p>
@@ -70,58 +70,62 @@
 			<article class="breadcrumbs"><a href="index.html">Website Admin</a> <div class="breadcrumb_divider"></div> <a class="current">Dashboard</a></article>
 		</div>
 	</section><!-- end of secondary bar -->
-	
+
 	<?php
 		include("parts/menu.php");
 	?>
-	
+
 	<section id="main" class="column">
-		
+
 		<h4 class="alert_success"><center>création d'un événement</center></h4>
 		<article class="module width_3_quarter">
 		<header><center>
 		</header>
 
-		<div class="tab_container">
-			<div style="display: block;" id="tab1" class="tab_content">
-			<table class="tablesorter" cellspacing="0"> 
-			<tbody> 
-			<tr> 
-    				<td>Date :</td> 
-    				<td><input type="date" class="form-control" id="usr"></td> 
-				</tr> 
-				<tr> 
-    				<td>Lieu :</td> 
-    				<td><input type="text" class="form-control" id="usr"></td> 
-				</tr>   
-				<tr> 
-    				<td>Nombre de place maximum :</td> 
-    				<td><input type="number" class="form-control" id="usr"></td> 
-				</tr>
-				<tr> 
-    				<td>Choisissez votre affiche :</td> 
-    				<td><input type="file" /></td> 
-				</tr>
-					<td></td>
-					<td><a href="modif-event.php" class="btn btn-primary" role="button"> Envoyer </a></td>
-				<tr>
-				
-			</tbody> 
-			</table>
-			</div><!-- end of #tab1 -->
-			
-		</div><!-- end of .tab_container -->
-		
+
+		<form class="form" action="modif-event.php" method="post" enctype="multipart/form-data">
+			<div class="tab_container">
+				<div style="display: block;" id="tab1" class="tab_content">
+					<table class="tablesorter" cellspacing="0">
+						<tbody>
+						<tr>
+			    				<td>Date :</td>
+			    				<td><input type="date" class="form-control" id="date" name="date"></td>
+							</tr>
+							<tr>
+			    				<td>Lieu :</td>
+			    				<td><input type="text" class="form-control" id="location" name="location"></td>
+							</tr>
+							<tr>
+			    				<td>Nombre de place maximum :</td>
+			    				<td><input type="number" class="form-control" id="maxTicket" name="maxTicket"></td>
+							</tr>
+							<tr>
+									<td>Envoyer le flyer de l'évènement :</td>
+			    				<td><input type="file" class="form-control" name="flyer" id="flyer"></td>
+							</tr>
+								<td></td>
+								<td><button type="submit" class="btn btn-primary" id="login-button" role="button">Envoyer</button></td>
+							<tr>
+
+						</tbody>
+					</table>
+				</div><!-- end of #tab1 -->
+			</div><!-- end of .tab_container -->
+		</form>
+
 		</article>
-		
+
 		<div class="clear"></div>
-		
+
 		<div class="spacer"></div>
 	</section>
-	
-	<?php
-            include("../parts/footer.php");
-    ?>
+
+	<div style="margin-left:50px;">
+		<?php
+		    include("../parts/footer.php");
+		?>
+	</div>
 
 
 </body>
