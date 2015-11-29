@@ -28,7 +28,7 @@
 	else if ($password1 != $password2)
 		header('Location: '.$_CONFIG['home']."admin/subscribe.php?error=2");
 	
-	$sth = $connexion->prepare('INSERT INTO `compte_assos` (`idAsso`, `name`, `email`, `password`, `verified`, `verif_key`) VALUES  (NULL, :name, CONCAT(:email, "@assos.utc.fr"), SHA1(:password), 0, :key)');
+	$sth = $connexion->prepare('INSERT INTO `assos` (`idAsso`, `name`, `email`, `password`, `verified`, `verif_key`) VALUES  (NULL, :name, CONCAT(:email, "@assos.utc.fr"), SHA1(:password), 0, :key)');
 	
 	$sth->bindParam(':name', $email);
 	$sth->bindParam(':email', $email);
