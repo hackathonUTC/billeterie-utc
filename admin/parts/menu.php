@@ -6,7 +6,7 @@
 	<h3>Événements</h3>
 	<ul class="toggle">
 		<li class="icn_new_article"><a href="create-event.php">Créer un événement</a></li>
-		<li class="icn_edit_article"><a href="#">Gestion des événement</a></li>
+		<li class="icn_edit_article"><a href="gestion-event.php">Gestion des événement</a></li>
 	</ul>
 	<h3>Administration</h3>
 	<ul class="toggle">
