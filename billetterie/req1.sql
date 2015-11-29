@@ -1,0 +1,1 @@
+SELECT events.eventTicketMax - (SELECT COUNT(*) FROM tickets WHERE tickets.eventID = 1) as rslt FROM events WHERE events.eventID = 1
