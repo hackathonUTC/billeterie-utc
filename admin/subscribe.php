@@ -1,3 +1,14 @@
+<?php 
+	// Page d'accueil : /index.php 
+	header("Content-Type: text/html; charset=UTF-8"); 
+	$error = isset($_GET['error']) ? $_GET['error'] : '';
+	
+	if ($error == "1")
+		echo "<script>alert('Un champ n\'a pas été renseigné !');</script>";
+	else if ($error == "2")
+		echo "<script>alert('Les mots de passe ne correspondent pas !');</script>";
+?>
+
 <!DOCTYPE html>
 <html >
   <head>
@@ -31,13 +42,13 @@
 				
 				<div class="loginPanel">
 				
-					<form class="form">
+					<form class="form" action="createAccount.php" method="post">
 						<div class="input-append">
-							<input class="span2" id="appendedInput" type="text" placeholder="Email Asso" style="height: 30px;">
+							<input class="span2" id="appendedInput" type="text" placeholder="Email Asso" style="height: 30px;"  name="email">
 						<span class="add-on"  style="height: 30px; color:black;">@assos.utc.fr</span>
 						</div><br>
-						<input type="password" placeholder="Password" style="height: 30px;"><br>
-						<input type="password" placeholder="Password Confirm" style="height: 30px;"><br><br>
+						<input type="password" placeholder="Password" style="height: 30px;"  name="pass1"><br>
+						<input type="password" placeholder="Password Confirm" style="height: 30px;" name="pass2"><br><br>
 						<button type="submit" id="login-button">Inscris Moi Mécréant</button><br>
 					</form>
 					
