@@ -1,6 +1,6 @@
 set absPath=%cd%
 
-set sub1=\Server\VirtuosoServer
-set VirtuosoServer=%absPath%%sub1%
+set sub1=\Server\BadgingServer
+set BadgingServer=%absPath%%sub1%
 
-START cmd.exe /k "cd %VirtuosoServer% & Launch.bat"
+START cmd.exe /k "cd %BadgingServer% & Launch.bat"
