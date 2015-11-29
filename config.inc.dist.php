@@ -11,5 +11,7 @@
 	$_CONFIG['cas_url'] = "https://cas.utc.fr/cas/";
 	$_CONFIG['home'] = "http://localhost/";
 	$_CONFIG['service'] = $_CONFIG['home']."inc/connect.php";
+	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+	$_CONFIG['uploadPath'] = $root.'/images/upload/';
 
 ?>
