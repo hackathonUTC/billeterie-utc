@@ -46,7 +46,7 @@
 	}
 	if ($uploadOk){
 			if(move_uploaded_file($_FILES["flyer"]["tmp_name"], $target_file)){
-					$sth = $connexion->prepare('INSERT INTO `events` (`eventID`, `asso`, `eventName`, `eventDate`, `eventFlyer`, `eventTicketMax`) VALUES (NULL, :asso, :name, :eventdate, :flyerpath, :maxTicket)');
+					$sth = $connexion->prepare('INSERT INTO `events` (`eventID`, `asso`, `eventName`, `eventDate`, `eventFlyer`, `eventTicketMax`, `location`) VALUES (NULL, :asso, :name, :eventdate, :flyerpath, :maxTicket, :location)');
 
 					$sth->bindParam(':asso', $asso);
 					$sth->bindParam(':name', $name);
@@ -54,13 +54,11 @@
 					$dbFilePath = substr($target_file, 12);
 					$sth->bindParam(':flyerpath', $dbFilePath);
 					$sth->bindParam(':maxTicket', $maxTicket);
+					$sth->bindParam(':location', $location);
 
 					$sth->execute();
 			}
 	}
-
-
-
 
 ?>
 
