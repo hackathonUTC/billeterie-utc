@@ -78,12 +78,13 @@
 									echo '<tr class="warning">';
 								else
 									echo '<tr class="info">';
+								$i = $i +1;
 								
 								echo'<td><div class="span3"><img src="'.$eventFlyer.'" alt="affiche-evenement style="width=200px;height=200px"></div></td>
 									 <td><div class="span6"><br><h3><center>'.$name.' <br>- '.$date.' -<br> <br> nombre de place restantes : '.$ticketsLeft.' </center></h3></div></td>
 									 <td><div class="span3"><br><br><center><br><br><a href="billetterie.php?eventID='.$id.'" class="btn btn-primary" role="button">Acheter des places</a></center></div></td>
 									 </tr>';
-								$i = $i +1;
+								
 							}
 						?>
 						</tbody>
