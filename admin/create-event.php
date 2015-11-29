@@ -88,7 +88,11 @@
 				<div style="display: block;" id="tab1" class="tab_content">
 					<table class="tablesorter" cellspacing="0">
 						<tbody>
-						<tr>
+							<tr>
+			    				<td>Nom de l'événement :</td>
+			    				<td><input type="text" class="form-control" id="name" name="name"></td>
+							</tr>
+							<tr>
 			    				<td>Date :</td>
 			    				<td><input type="date" class="form-control" id="date" name="date"></td>
 							</tr>
