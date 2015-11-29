@@ -10,7 +10,7 @@
 	if ($key == "")
 		header('Location: '.$_CONFIG['home']."admin/");
 	
-	$sth = $connexion->prepare('UPDATE `compte_assos` SET `verified` = "1" WHERE `verif_key` = :key');
+	$sth = $connexion->prepare('UPDATE `assos` SET `verified` = "1" WHERE `verif_key` = :key');
 	
 	$sth->bindParam(':key', $key);
 
