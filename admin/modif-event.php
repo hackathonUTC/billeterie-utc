@@ -15,49 +15,58 @@
 
 	$target_file = $_CONFIG['uploadPath'].generateRandomString(20);
 
-	$filename = $_FILES['flyer']['name'];
-	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-
-	$target_file = $target_file.".".strtolower($ext);
-
-	$uploadOk = 1;
 	// Check if image file is a actual image or fake image
 	if(isset($_POST["submit"])) {
+
+			$filename = $_FILES['flyer']['name'];
+			$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+			$target_file = $target_file.".".$ext;
+
+			$uploadOk = 1;
+
 	    $check = getimagesize($_FILES["flyer"]["tmp_name"]);
 	    if($check !== false) {
 	        echo "File is an image - " . $check["mime"] . ".";
 	        $uploadOk = 1;
 	    } else {
-	        echo "File is not an image.";
 	        $uploadOk = 0;
+					echo '<script>console.log("1");</script>';
 	    }
 			if ($_FILES["flyer"]["size"] > 5000000) // Larger than 5Mb
 			{
-			    echo "Sorry, your file is too large.";
 			    $uploadOk = 0;
+					echo '<script>console.log("2");</script>';
 			}
 			while (file_exists($target_file)) {
 			    $target_file = $_CONFIG['uploadPath'].generateRandomString(20);
-					$target_file = $target_file.".".strtolower($ext);
+					$target_file = $target_file.".".$ext;
 			}
 			if($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != "gif" ) {
 					$uploadOk = 0;
+					echo '<script>console.log("'.$ext.' && 3");</script>';
+			}
+			if ($uploadOk){
+					if(move_uploaded_file($_FILES["flyer"]["tmp_name"], $target_file)){
+							$sth = $connexion->prepare('INSERT INTO `events` (`eventID`, `asso`, `eventName`, `eventDate`, `eventFlyer`, `eventTicketMax`, `location`) VALUES (NULL, :asso, :name, :eventdate, :flyerpath, :maxTicket, :location)');
+
+							$sth->bindParam(':asso', $asso);
+							$sth->bindParam(':name', $name);
+							$sth->bindParam(':eventdate', $date);
+							$dbFilePath = substr($target_file, 12);
+							$sth->bindParam(':flyerpath', $dbFilePath);
+							$sth->bindParam(':maxTicket', $maxTicket);
+							$sth->bindParam(':location', $location);
+
+							$sth->execute();
+					}
+					else {
+						echo '<script>console.log("4");</script>';
+					}
 			}
 	}
-	if ($uploadOk){
-			if(move_uploaded_file($_FILES["flyer"]["tmp_name"], $target_file)){
-					$sth = $connexion->prepare('INSERT INTO `events` (`eventID`, `asso`, `eventName`, `eventDate`, `eventFlyer`, `eventTicketMax`, `location`) VALUES (NULL, :asso, :name, :eventdate, :flyerpath, :maxTicket, :location)');
-
-					$sth->bindParam(':asso', $asso);
-					$sth->bindParam(':name', $name);
-					$sth->bindParam(':eventdate', $date);
-					$dbFilePath = substr($target_file, 12);
-					$sth->bindParam(':flyerpath', $dbFilePath);
-					$sth->bindParam(':maxTicket', $maxTicket);
-					$sth->bindParam(':location', $location);
-
-					$sth->execute();
-			}
+	else {
+		echo '<script>console.log("5");</script>';
 	}
 
 ?>
@@ -152,37 +161,37 @@
 		<div class="tab_container">
 			<div id="tab1" class="tab_content">
 			<table class="tablesorter" cellspacing="0">
-			<tbody>
-				<tr>
-    				<td>Nom</td>
-    				<td><input type="text" class="form-control" id="usr"></td>
-    				<td><button type="button" class="btn btn-success">Valider</button></td>
-				</tr>
-				<tr>
-    				<td>Date</td>
-    				<td><input type="text" class="form-control" id="usr"></td>
-    				<td><button type="button" class="btn btn-success">Valider</button></td>
-				</tr>
-				<tr>
-    				<td>Lieu</td>
-    				<td><input type="text" class="form-control" id="usr"></td>
-    				<td><button type="button" class="btn btn-success">Valider</button></td>
-				</tr>
-				<tr>
-    				<td>Affiche</td>
-    				<td><input type="file" /></td>
-					<td><button type="button" class="btn btn-success">Valider</button></td>
-				</tr>
-				<tr>
-    				<td>Nombre de places maximal</td>
-    				<td><input type="text" class="form-control" id="usr"></td>
-    				<td><button type="button" class="btn btn-success">Valider</button></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><button type="button" class="btn btn-danger">Supprimer l'événement</button></td>
-					<td></td>
-				</tr>
+				<tbody>
+					<tr>
+							<td>Nom de l'événement :</td>
+							<td><input type="text" class="form-control" id="name" name="name" value="<?php echo $name; ?>"></td>
+							<td><button type="submit" class="btn btn-primary" id="login-button" role="button">Update</button></td>
+					</tr>
+					<tr>
+							<td>Date :</td>
+							<td><input type="date" class="form-control" id="date" name="date" value="<?php echo $date; ?>"></td>
+							<td><button type="submit" class="btn btn-primary" id="login-button" role="button">Update</button></td>
+					</tr>
+					<tr>
+							<td>Lieu :</td>
+							<td><input type="text" class="form-control" id="location" name="location" value="<?php echo $location; ?>"></td>
+							<td><button type="submit" class="btn btn-primary" id="login-button" role="button">Update</button></td>
+					</tr>
+					<tr>
+							<td>Nombre de place maximum :</td>
+							<td><input type="number" class="form-control" id="maxTicket" name="maxTicket" style="height: 30px;" value="<?php echo $maxTicket; ?>"></td>
+							<td><button type="submit" class="btn btn-primary" id="login-button" role="button">Update</button></td>
+					</tr>
+					<tr>
+							<td>Envoyer le flyer de l'évènement :</td>
+							<td><input type="file" class="form-control" name="flyer" id="flyer"></td>
+							<td><button type="submit" class="btn btn-primary" id="login-button" role="button">Update</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><button type="button" class="btn btn-danger">Supprimer l'événement</button></td>
+						<td></td>
+					</tr>
 			</tbody>
 			</table>
 			</div><!-- end of #tab1 -->
