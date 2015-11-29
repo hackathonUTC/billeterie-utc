@@ -58,18 +58,18 @@
 			<div class="row">
 				<div class="span5">
 				<?php
-					/*
+					
 					$sth = $connexion->prepare('SELECT `eventFlyer` FROM `events` WHERE `eventID` = :eventID');
 	
-					$sth->bindParam(':email', $email);
-					$sth->bindParam(':password', $password);
+					$sth->bindParam(':eventID', $eventID);
 
 					$sth->execute(); 
 					$row = $sth->fetch();
-					*/
+					
+					echo '<img src="'.$row["eventFlyer"].'" alt="affiche-evenement">';
 				?>
 				
-					<img src="image/affiche.jpg" alt="affiche-evenement">
+					
 				</div>
 				<div class="span7">
 					<table class="table">
