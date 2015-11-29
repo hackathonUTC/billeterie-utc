@@ -4,18 +4,19 @@
 	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
     require_once $root.'/config.inc.php';
 	require_once $root.'/inc/checksession.php';
+	require_once $root.'/inc/dbconnect.php';
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
     
-        <link rel="stylesheet" type="text/css" href="../css/style.css?dev=01" />
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
         
         <title> Billetterie UTC </title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         
-        <link href="../bootstrap/css/bootstrap.min.css?dev=01" rel="stylesheet" type="text/css" />
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         
         <style type="text/css">
@@ -25,9 +26,9 @@
               }
         </style>
         
-        <link href="../bootstrap/css/bootstrap-responsive.min.css?dev=01" rel="stylesheet">
+        <link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
         
-        <script src="../scripts/jquery-1.9.1.min.js?dev=01"  ></script>
+        <script src="../scripts/jquery-1.9.1.min.js"  ></script>
         <!-- <script type="text/javascript" src="scripts/general.js" charset="utf-8"></script> -->
 
         
