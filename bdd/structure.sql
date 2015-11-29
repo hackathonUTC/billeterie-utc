@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 29 Novembre 2015 à 06:58
+-- Généré le :  Dim 29 Novembre 2015 à 07:33
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -135,6 +135,54 @@ INSERT INTO `tariftypes` (`tarifName`, `cotisant`, `utc`) VALUES
 ('Extérieur', 0, 0),
 ('Non Cotisant BDE-UTC', 0, 1);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `tickets`
+--
+-- Création :  Dim 29 Novembre 2015 à 06:29
+--
+
+DROP TABLE IF EXISTS `tickets`;
+CREATE TABLE IF NOT EXISTS `tickets` (
+  `ticketID` int(11) NOT NULL AUTO_INCREMENT,
+  `tarifName` varchar(255) NOT NULL,
+  `eventID` int(11) NOT NULL,
+  `buyerLogin` varchar(8) NOT NULL,
+  `ticketKey` varchar(15) NOT NULL,
+  PRIMARY KEY (`ticketID`),
+  KEY `tarifName` (`tarifName`,`eventID`,`buyerLogin`,`ticketKey`),
+  KEY `eventID` (`eventID`),
+  KEY `buyerLogin` (`buyerLogin`),
+  KEY `ticketKey` (`ticketKey`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+
+--
+-- Contenu de la table `tickets`
+--
+
+INSERT INTO `tickets` (`ticketID`, `tarifName`, `eventID`, `buyerLogin`, `ticketKey`) VALUES
+(1, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(2, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(3, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(4, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(5, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(6, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(7, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(8, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(9, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(10, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(11, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(12, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(13, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(14, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(15, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(16, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(17, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(18, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(19, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa'),
+(20, 'Cotisant BDE-UTC', 1, 'jdekhtia', 'aaaaaaaaaaaaaaa');
+
 --
 -- Contraintes pour les tables exportées
 --
@@ -151,4 +199,11 @@ ALTER TABLE `events`
 ALTER TABLE `tarifs`
   ADD CONSTRAINT `fk_tariftype` FOREIGN KEY (`tarifName`) REFERENCES `tariftypes` (`tarifName`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_event` FOREIGN KEY (`eventID`) REFERENCES `events` (`eventID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `tickets`
+--
+ALTER TABLE `tickets`
+  ADD CONSTRAINT `fk_eventID_ticket` FOREIGN KEY (`eventID`) REFERENCES `events` (`eventID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_tariftype_ticket` FOREIGN KEY (`tarifName`) REFERENCES `tariftypes` (`tarifName`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
